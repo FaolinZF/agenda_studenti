@@ -21,9 +21,9 @@ class Appuntamenti {
     Appuntamenti() {
     }
 
-    Appuntamenti(LocalDate data, LocalTime ora, TipoAppuntamento tipo, Uffici ufficio, String descrizione) {
-        this.data = data;
-        this.ora = ora;
+    Appuntamenti(String data, String ora, TipoAppuntamento tipo, Uffici ufficio, String descrizione) {
+        this.data = LocalDate.parse(data);
+        this.ora = LocalTime.parse(ora);
         this.tipo = tipo;
         this.ufficio = ufficio;
         this.descrizione = descrizione;
@@ -57,12 +57,12 @@ class Appuntamenti {
         this.id = id;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setData(String data) {
+        this.data = LocalDate.parse(data);
     }
 
-    public void setOra(LocalTime ora) {
-        this.ora = ora;
+    public void setOra(String ora) {
+        this.ora = LocalTime.parse(ora);
     }
 
     public void setTipoAppuntamento(TipoAppuntamento tipo) {
