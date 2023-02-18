@@ -78,16 +78,17 @@ class Appuntamenti {
     }
 
     @Override
-    public boolean equals (Objects o) {
-        
-        if(this == o)
+    public boolean equals(Object o) {
+
+        if (this == o)
             return true;
 
-        if(!(o instaceof Appuntamenti))
+        if (!(o instanceof Appuntamenti))
             return false;
 
         Appuntamenti appuntamenti = (Appuntamenti) o;
-        return Objects.equals(this.id, appuntamenti.id) && Objects.equals(this.data, appuntamenti.data) && Objects.equals(this.ora, appuntamenti.ora)
+        return Objects.equals(this.id, appuntamenti.id) && Objects.equals(this.data, appuntamenti.data)
+                && Objects.equals(this.ora, appuntamenti.ora)
                 && Objects.equals(this.tipo, appuntamenti.tipo) && Objects.equals(this.ufficio, appuntamenti.ufficio)
                 && Objects.equals(this.descrizione, appuntamenti.descrizione);
     }
