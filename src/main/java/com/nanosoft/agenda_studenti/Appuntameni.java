@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
@@ -14,16 +16,18 @@ class Appuntamenti {
     private @Id @GeneratedValue Long id;
     private LocalDate data;
     private LocalTime ora;
+    @Enumerated(EnumType.STRING)
     private TipoAppuntamento tipo;
+    @Enumerated(EnumType.STRING)
     private Uffici ufficio;
     private String descrizione;
 
     Appuntamenti() {
     }
 
-    Appuntamenti(String data, String ora, TipoAppuntamento tipo, Uffici ufficio, String descrizione) {
-        this.data = LocalDate.parse(data);
-        this.ora = LocalTime.parse(ora);
+    Appuntamenti(LocalDate data, LocalTime ora, TipoAppuntamento tipo, Uffici ufficio, String descrizione) {
+        this.data = data;
+        this.ora = ora;
         this.tipo = tipo;
         this.ufficio = ufficio;
         this.descrizione = descrizione;
@@ -33,7 +37,7 @@ class Appuntamenti {
         return this.id;
     }
 
-    public LocalDate getDate() {
+    public LocalDate getData() {
         return this.data;
     }
 
@@ -57,12 +61,12 @@ class Appuntamenti {
         this.id = id;
     }
 
-    public void setData(String data) {
-        this.data = LocalDate.parse(data);
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public void setOra(String ora) {
-        this.ora = LocalTime.parse(ora);
+    public void setOra(LocalTime ora) {
+        this.ora = ora;
     }
 
     public void setTipoAppuntamento(TipoAppuntamento tipo) {

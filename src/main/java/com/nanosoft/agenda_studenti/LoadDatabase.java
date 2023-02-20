@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Configuration
 public class LoadDatabase {
@@ -14,9 +16,11 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(AppuntamentiRepository repository) {
         return arg -> {
-            repository.save(new Appuntamenti("2023-04-01", "13:45", TipoAppuntamento.CON_DIRETTORE, Uffici.UFFICIO2,
+            repository.save(new Appuntamenti(LocalDate.parse("2023-04-01"), LocalTime.parse("13:45"),
+                    TipoAppuntamento.CON_DIRETTORE, Uffici.UFFICIO2,
                     "appuntamento con il dr. Rossi per discutere il risultato dell'esame di Fisica"));
-            repository.save(new Appuntamenti("2023-03-19", "15:30", TipoAppuntamento.CON_CONSULENTE, Uffici.UFFICIO5,
+            repository.save(new Appuntamenti(LocalDate.parse("2023-03-19"), LocalTime.parse("15:30"),
+                    TipoAppuntamento.CON_CONSULENTE, Uffici.UFFICIO5,
                     "appuntamento con la sig.ra Palermo per discutere l'assegnazione dell'alloggio"));
             repository.findAll().forEach(appuntamenti -> log.info("Preload " + appuntamenti));
         };
