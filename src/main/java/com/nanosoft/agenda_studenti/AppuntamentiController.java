@@ -30,9 +30,9 @@ public class AppuntamentiController {
     }
 
     // appuntamenti per data
-    @GetMapping("appuntamenti/data/{data}")
-    List<Appuntamenti> perData(@PathVariable String data) {
-        List<Appuntamenti> l = repository.findByDataOrderByOraAsc(LocalDate.parse(data));
+    @GetMapping("appuntamenti/data")
+    List<Appuntamenti> perData(@RequestParam LocalDate data) {
+        List<Appuntamenti> l = repository.findByDataOrderByOraAsc(data);
         if (l.isEmpty()) {
             throw new AppuntamentoPerDataNotFoundException("Non ho trovato appuntamenti per il giorno " + data);
         }
@@ -40,19 +40,19 @@ public class AppuntamentiController {
     }
 
     // appuntamenti per ufficio
-    @GetMapping("appuntamenti/uffici/{ufficio}")
-    List<Appuntamenti> perUffico(@PathVariable String ufficio) {
-        List<Appuntamenti> l = repository.findByUfficioOrderByDataAndOraAsc(Uffici.valueOf(ufficio));
+    @GetMapping("appuntamenti/ufficio")
+    List<Appuntamenti> perTipoAppuntamento(@RequestParam TipoAppuntamento tipo) {
+        List<Appuntamenti> l = repository.findByTipoAppuntamentiOrderByDataAndOraAsc(tipo);
         if (l.isEmpty()) {
-            throw new AppuntamentoPerUfficioNotFoundException("Non ho trovato appuntamenti per l'ufficio: " + ufficio);
+            throw new AppuntamentoPerTipoAppuntamentiNotFoundException("Non ho trovato appuntamenti di tipo: " + tipo);
         }
         return l;
     }
 
     // appuntamento per data e ora
-    @GetMapping("appuntamenti/dataora/{data}/{ora}")
-    Appuntamenti appuntamentoSpecifico(@PathVariable String data, @PathVariable String ora) {
-        Appuntamenti a = repository.findByDataAndOra(LocalDate.parse(data), LocalTime.parse(ora));
+    @GetMapping("appuntamenti/")
+    Appuntamenti appuntamentoSpecifico(@RequestParam LocalDate data, @RequestParam LocalTime ora) {
+        Appuntamenti a = repository.findByDataAndOra(data, ora);
         if (a == null) {
             throw new AppuntamentoPerDataOraNotFoundException(
                     "Non ho trovato l'appuntamento per il giorno " + data + " alle ore " + ora);
@@ -60,27 +60,27 @@ public class AppuntamentiController {
         return a;
     }
 
-    @PutMapping("appuntamenti/dataora/{data}/{ora}")
-    Appuntamenti replaceAppuntamentoAppuntamento(@RequestBody Appuntamenti newAppuntamento, @PathVariable String data,
-            @PathVariable String ora) {
+    @PutMapping("appuntamenti/put")
+    Appuntamenti replaceAppuntamentoAppuntamento(@RequestBody Appuntamenti newAppuntamento,
+            @RequestParam LocalDate data,
+            @RequestParam LocalTime ora) {
 
-        if (repository.findByDataAndOra(LocalDate.parse(data), LocalTime.parse(ora)) != null) {
-            newAppuntamento.setData(newAppuntamento.getData());
-            newAppuntamento.setOra(newAppuntamento.getOra());
-            newAppuntamento.setTipoAppuntamento(newAppuntamento.getTipoAppuntamento());
-            newAppuntamento.setUfficio(newAppuntamento.getUfficio());
-            newAppuntamento.setDescrizione(newAppuntamento.getDescrizione());
-            return repository.save(newAppuntamento);
+        Appuntamenti findedAppuntamento = repository.findByDataAndOra(data, ora);
+
+        if (findedAppuntamento != null) {
+            findedAppuntamento.setData(newAppuntamento.getData());
+            findedAppuntamento.setOra(newAppuntamento.getOra());
+            findedAppuntamento.setTipoAppuntamento(newAppuntamento.getTipoAppuntamento());
+            findedAppuntamento.setUfficio(newAppuntamento.getUfficio());
+            findedAppuntamento.setDescrizione(newAppuntamento.getDescrizione());
+            return repository.save(findedAppuntamento);
         }
 
-        Appuntamenti appuntamento = new Appuntamenti(newAppuntamento.getData(), newAppuntamento.getOra(),
-                newAppuntamento.getTipoAppuntamento(), newAppuntamento.getUfficio(), newAppuntamento.getDescrizione());
-
-        return repository.save(appuntamento);
+        return newAppuntamenti(newAppuntamento);
     }
 
-    @DeleteMapping("/appuntamenti/delete/dataora/{data}/{ora}")
-    void deleteAppuntamento(@PathVariable String data, @PathVariable String ora) {
-        repository.deleteByDataAndOra(LocalDate.parse(data), LocalTime.parse(ora));
+    @DeleteMapping("/appuntamenti/delete")
+    void deleteAppuntamento(@RequestParam LocalDate data, @RequestParam LocalTime ora) {
+        repository.deleteByDataAndOra(data, ora);
     }
 }

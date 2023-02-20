@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class AppuntamentoPerUfficioNotFoundAdvice {
+public class AppuntamentoPerTipoAppuntamentiNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(AppuntamentoPerUfficioNotFoundException.class)
+    @ExceptionHandler(AppuntamentoPerTipoAppuntamentiNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String appuntamentoPerUfficioNotFoundHandler(AppuntamentoPerUfficioNotFoundException ex) {
+    String appuntamentoPerUfficioNotFoundHandler(AppuntamentoPerTipoAppuntamentiNotFoundException ex) {
         return ex.getMessage();
     }
 }
