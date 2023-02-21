@@ -15,25 +15,17 @@ import java.time.LocalTime;
 interface AppuntamentiRepository extends JpaRepository<Appuntamenti, Long> {
 
     @Query(value = "SELECT * FROM appuntamenti e WHERE e.data = :data ORDER BY e.ora", nativeQuery = true)
-    // List<Appuntamenti> findByDate(@Param("data") String date);
     List<Appuntamenti> findByDataOrderByOraAsc(@Param("data") LocalDate data);
 
     @Query(value = "SELECT * FROM appuntamenti e WHERE e.tipo = :#{#tipo.name()} ORDER BY e.data ASC, e.ora ASC", nativeQuery = true)
-    // List<Appuntamenti> findByUfficio(@Param("ufficio") String ufficio);
     List<Appuntamenti> findByTipoAppuntamentiOrderByDataAndOraAsc(@Param("tipo") TipoAppuntamento tipo);
 
     @Query(value = "SELECT * FROM appuntamenti e WHERE e.data = :data AND e.ora = :ora", nativeQuery = true)
-    // List<Appuntamenti> findByDateOra(@Param("data") String date, @Param("ora")
-    // String ora);
     Appuntamenti findByDataAndOra(@Param("data") LocalDate data, @Param("ora") LocalTime ora);
 
-    /*
-     * @Modifying
-     * 
-     * @Query(value =
-     * "DELETE FROM appuntamenti e WHERE e.data = :data AND e.ora = :ora",
-     * nativeQuery = true)
-     */
+    @Query(value = "SELECT * FROM appuntamenti e WHERE e.descrizione LIKE %:descrizione% ORDER BY e.data ASC, e.ora ASC", nativeQuery = true)
+    List<Appuntamenti> findByDescrizioneOrderByDataAscAndOraAsc(@Param("descrizione") String descrizione);
+
     void deleteByDataAndOra(LocalDate data, LocalTime ora);
 
 }

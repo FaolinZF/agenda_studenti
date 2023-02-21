@@ -81,6 +81,22 @@ public class AppuntamentiController {
         return assembler.toModel(a);
     }
 
+    // appuntamenti per descrizione
+    @GetMapping("appuntamenti/descrizione")
+    CollectionModel<EntityModel<Appuntamenti>> perDescrizione(@RequestParam String descrizione) {
+
+        List<EntityModel<Appuntamenti>> l = repository.findByDescrizioneOrderByDataAscAndOraAsc(descrizione).stream()
+                .map(assembler::toModel).collect(Collectors.toList());
+
+        if (l.isEmpty()) {
+            throw new AppuntamentoPerDescrizioneNotFoundException(
+                    "Non ho trovato appuntamenti contenente tutta o parte di questa descizione '" + descrizione + "'");
+        }
+        return CollectionModel.of(l,
+                linkTo(methodOn(AppuntamentiController.class).perDescrizione(descrizione)).withSelfRel());
+
+    }
+
     @PutMapping("appuntamenti/put")
     ResponseEntity<?> replaceAppuntamentoAppuntamento(@RequestBody Appuntamenti newAppuntamento,
             @RequestParam LocalDate data,
