@@ -1,6 +1,7 @@
 package com.nanosoft.agenda_studenti;
 
 import java.util.Objects;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -14,12 +15,17 @@ import jakarta.persistence.Id;
 class Appuntamenti {
 
     private @Id @GeneratedValue Long id;
+
     private LocalDate data;
+
     private LocalTime ora;
+
     @Enumerated(EnumType.STRING)
     private TipoAppuntamento tipo;
+
     @Enumerated(EnumType.STRING)
     private Uffici ufficio;
+
     private String descrizione;
 
     Appuntamenti() {
