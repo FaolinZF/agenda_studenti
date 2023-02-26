@@ -10,22 +10,32 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.FutureOrPresent;
 
 @Entity
 class Appuntamenti {
 
     private @Id @GeneratedValue Long id;
 
+    @NotNull
+    @FutureOrPresent
     private LocalDate data;
 
+    @NotNull
+    // @FutureOrPresent
     private LocalTime ora;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoAppuntamento tipo;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Uffici ufficio;
 
+    @NotBlank
     private String descrizione;
 
     Appuntamenti() {
