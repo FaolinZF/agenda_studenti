@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "1a75c925-b1ef-4a3c-81d7-e6e2513f6d73",
+		"name": "test agenda nanosoft",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25810696"
+	},
+	"item": [
+		{
+			"name": "lista appuntamenti",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti"
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamenti in agenda"
+			},
+			"response": []
+		},
+		{
+			"name": "lista appuntamenti per data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti/data?data=2023-03-19",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"data"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2023-03-19"
+						}
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamente per un determinato ufficio"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per data Errore1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti/data?data=2023-02",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"data"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2023-02"
+						}
+					]
+				},
+				"description": "richiesta lista appuntmenti per data con passaggio di data scritta in modo errato"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per data Errore2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti/data?data=2020-01-01",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"data"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2020-01-01"
+						}
+					]
+				},
+				"description": "richiesta lista appuntmenti per data con passaggio di data inesistente"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per data Errore3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti/data?data=",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"data"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": ""
+						}
+					]
+				},
+				"description": "richiesta lista appuntmenti per data senza passaggio di data"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per tipo appuntamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/tipo?tipo=CON_CONSULENTE",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"tipo"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "CON_CONSULENTE"
+						}
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamenti in agenda del tipo specifico"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per tipo appuntamento Errore1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/tipo?tipo=CON_CONSUL",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"tipo"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "CON_CONSUL"
+						}
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamenti in agenda del tipo specifico con passaggio di tipo errato"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per tipo appuntamento Errore2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/tipo?tipo=",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"tipo"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": ""
+						}
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamenti in agenda del tipo specifico senza passaggio di tipo"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per descrizione",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/descrizione?descrizione=Rossi",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"descrizione"
+					],
+					"query": [
+						{
+							"key": "descrizione",
+							"value": "Rossi"
+						}
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamente con una data stringa nella descrizione"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamenti per descrizione  Errore1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/descrizione?descrizione=ejlhrtbgvjdbhlf",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"descrizione"
+					],
+					"query": [
+						{
+							"key": "descrizione",
+							"value": "ejlhrtbgvjdbhlf"
+						}
+					]
+				},
+				"description": "richiesta per ottenere tutti gli appuntamente con una data stringa nella descrizione ma con stringa inesistente"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamento specifico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/?data=2023-03-19&ora=15:30:00",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						""
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2023-03-19"
+						},
+						{
+							"key": "ora",
+							"value": "15:30:00"
+						}
+					]
+				},
+				"description": "richiesta per ottenere l'appuntamento specifico con ricerca tramite data-ora"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamento specifico Errore1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/?data=2023-03-19&ora=05:00",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						""
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2023-03-19"
+						},
+						{
+							"key": "ora",
+							"value": "05:00"
+						}
+					]
+				},
+				"description": "richiesta per ottenere l'appuntamento specifico con ricerca tramite data-ora con ora inesistente"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamento specifico Errore2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/?data=2020-01-01&ora=15:30:00",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						""
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "ora",
+							"value": "15:30:00"
+						}
+					]
+				},
+				"description": "richiesta per ottenere l'appuntamento specifico con ricerca tramite data-ora con data inesistente"
+			},
+			"response": []
+		},
+		{
+			"name": "appuntamento specifico Errore3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/?data=&ora=",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						""
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": ""
+						},
+						{
+							"key": "ora",
+							"value": ""
+						}
+					]
+				},
+				"description": "richiesta per ottenere l'appuntamento specifico con ricerca tramite data-ora con data e ora null"
+			},
+			"response": []
+		},
+		{
+			"name": "inserimento appuntamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"2023-05-13\",\r\n    \"ora\": \"11:55\",\r\n    \"ufficio\": \"UFFICIO5\",\r\n    \"descrizione\": \"appuntamento preso con POST\",\r\n    \"tipoAppuntamento\": \"CON_CONSULENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti"
+					]
+				},
+				"description": "richiesta POST per inserire un appuntamento specifico fornendo un JSON"
+			},
+			"response": []
+		},
+		{
+			"name": "inserimento appuntamento Errore1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ora\": \"11:55\",\r\n    \"ufficio\": \"UFFICIO5\",\r\n    \"descrizione\": \"appuntamento preso con POST\",\r\n    \"tipoAppuntamento\": \"CON_CONSULENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti"
+					]
+				},
+				"description": "richiesta POST per inserire un appuntamento specifico fornendo un JSON con un valore nullo"
+			},
+			"response": []
+		},
+		{
+			"name": "inserimento appuntamento Errore2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"2023-02-19\",\r\n    \"ora\": \"11:00\",\r\n    \"ufficio\": \"UFFICIO5\",\r\n    \"descrizione\": \"appuntamento preso con POST\",\r\n    \"tipoAppuntamento\": \"CON_CONSULENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti"
+					]
+				},
+				"description": "richiesta POST per inserire un appuntamento specifico fornendo un JSON con una data nel passato"
+			},
+			"response": []
+		},
+		{
+			"name": "content-type errato",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"2023-05-13\",\r\n    \"ora\": \"11:55\",\r\n    \"ufficio\": \"UFFICIO5\",\r\n    \"descrizione\": \"appuntamento preso con POST\",\r\n    \"tipoAppuntamento\": \"CON_CONSULENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti"
+					]
+				},
+				"description": "richiesta POST per inserire un appuntamento specifico fornendo un JSON con content-type errato o omesso"
+			},
+			"response": []
+		},
+		{
+			"name": "aggiornamento appuntamento",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"2023-04-05\",\r\n    \"ora\": \"13:45:00\",\r\n    \"ufficio\": \"UFFICIO9\",\r\n    \"descrizione\": \"Aggiornato\",\r\n    \"tipoAppuntamento\": \"CON_DIRETTORE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti/put?data=2023-03-19&ora=15:30",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"put"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2023-03-19"
+						},
+						{
+							"key": "ora",
+							"value": "15:30"
+						}
+					]
+				},
+				"description": "richiesta PUT per aggiornare un appuntamento tramite ricerca data-ora, se non trova l'appuntamento da aggiornare lo inserisce come nuovo appuntamento\n\nesempio con data-ora trovata"
+			},
+			"response": []
+		},
+		{
+			"name": "aggiornamento appuntamento2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\": \"2023-02-19\",\r\n    \"ora\": \"13:45:00\",\r\n    \"ufficio\": \"UFFICIO9\",\r\n    \"descrizione\": \"Aggiornato\",\r\n    \"tipoAppuntamento\": \"CON_DIRETTORE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/appuntamenti/put?data=2022-01-01&ora=13:45:00",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"put"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2022-01-01"
+						},
+						{
+							"key": "ora",
+							"value": "13:45:00"
+						}
+					]
+				},
+				"description": "richiesta PUT per aggiornare un appuntamento tramite ricerca data-ora, se non trova l'appuntamento da aggiornare lo inserisce come nuovo appuntamento\n\nesempio con data-ora non trovata"
+			},
+			"response": []
+		},
+		{
+			"name": "delete appuntamento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/appuntamenti/delete?data=2023-05-13&ora=11:55:00",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"appuntamenti",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "data",
+							"value": "2023-05-13"
+						},
+						{
+							"key": "ora",
+							"value": "11:55:00"
+						}
+					]
+				},
+				"description": "Elimina un appuntamento specifico tramite ricerca data-ora"
+			},
+			"response": []
+		}
+	]
+}
