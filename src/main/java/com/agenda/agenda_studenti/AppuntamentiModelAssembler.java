@@ -1,4 +1,4 @@
-package com.nanosoft.agenda_studenti;
+package com.agenda.agenda_studenti;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -17,7 +17,7 @@ public class AppuntamentiModelAssembler
         return EntityModel.of(appuntamento,
                 linkTo(methodOn(AppuntamentiController.class)
                         .appuntamentoSpecifico(appuntamento.getData(), appuntamento.getOra())).withSelfRel(),
-                        linkTo(methodOn(AppuntamentiController.class).all()).withRel("appuntamenti"));
+                linkTo(methodOn(AppuntamentiController.class).all()).withRel("appuntamenti"));
 
     }
 

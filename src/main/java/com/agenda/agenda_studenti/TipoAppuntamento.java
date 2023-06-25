@@ -1,4 +1,4 @@
-package com.nanosoft.agenda_studenti;
+package com.agenda.agenda_studenti;
 
 enum TipoAppuntamento {
 

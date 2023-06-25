@@ -1,4 +1,4 @@
-package com.nanosoft.agenda_studenti;
+package com.agenda.agenda_studenti;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
